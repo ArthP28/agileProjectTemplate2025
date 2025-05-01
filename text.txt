@@ -1,0 +1,13 @@
+What info do we need to store. What input will there be? What will the program output? 
+No log in system needed. We need to keep track of each course, the students in that course, the dates.
+Each student can be on time, absent (excused or not excused), or late. Sorting alphabetically by name
+but the instructor would also like to be able to see the names in a custom order, perhaps roughly laid out by seat location.
+Keep track of frequency of absenses and be able to sort them based on that. 
+The instructor wants to be able to see summaries of who was absent on a particular day,
+who are the most frequently absent, and get detailed records about any student in a class.
+All he wants is the students names, who was there for each particular class that day. 
+He'll pick a course, and then he'll pick his method. 
+At start, does he want to take attendance or pick a summary. Check attendance from the course as a whole, 
+check attendance from a particular day, or check attendace for a particular student.
+Create a menu, select course, then select out of the 4 options.
+
