@@ -27,7 +27,7 @@ void printMainMenu(){
         
     }
     else{
-        clrscr();
+        //clrscr();
         cout<<"Please enter a valid number!"<<endl;
         printMainMenu();
     }
