@@ -1,3 +1,11 @@
+// For Sys(Clear) which is currently experimental
+#ifdef _WIN32
+#include <stdlib.h>
+#define CLEAR "cls"
+#else
+#define CLEAR "clear"
+#endif
+
 #include <iostream>
 using namespace std;
 
@@ -5,6 +13,7 @@ void printMainMenu();
 
 int main()
 {
+    //system("cls");
     cout<<"Agile Project"<<endl;
     
     printMainMenu();
@@ -13,6 +22,7 @@ int main()
 }
 
 void printMainMenu(){
+    
     string input;
     cout<<"Please type number cooresponding to the option you want: "<<endl;
     cout<<"1: Take attendance"<<endl;
@@ -20,14 +30,14 @@ void printMainMenu(){
     
     cin>>input;
     
-    if(input == '1'){
+    if(input == "1"){
         
     }
-    else if(input == '2'){
+    else if(input == "2"){
         
     }
     else{
-        clrscr();
+        //system(CLEAR);
         cout<<"Please enter a valid number!"<<endl;
         printMainMenu();
     }
