@@ -10,6 +10,8 @@
 using namespace std;
 
 void printMainMenu();
+void printTakeAttendenceMenu();
+void printViewAttendenceMenu();
 
 int main()
 {
@@ -31,14 +33,22 @@ void printMainMenu(){
     cin>>input;
     
     if(input == "1"){
-        
+        printTakeAttendenceMenu();
     }
     else if(input == "2"){
-        
+        printViewAttendenceMenu();
     }
     else{
 
         cout<<"Please enter a valid number!"<<endl;
         printMainMenu();
     }
+}
+
+void printTakeAttendenceMenu(){
+    
+}
+
+void printViewAttendenceMenu(){
+    
 }
