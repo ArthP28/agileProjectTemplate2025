@@ -37,7 +37,7 @@ void printMainMenu(){
         
     }
     else{
-        //system(CLEAR);
+
         cout<<"Please enter a valid number!"<<endl;
         printMainMenu();
     }
