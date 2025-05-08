@@ -5,6 +5,6 @@ using namespace std;
 int main()
 {
     AttendanceDBAbstraction db("StudentAttendance.sqlite");
-    cout<<"Agile Project"<<endl;
+	db.InsertStudent("201204", "firt", "lad");
     return 0;
 }
