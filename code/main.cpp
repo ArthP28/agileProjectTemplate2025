@@ -7,15 +7,37 @@
 #endif
 
 #include <iostream>
+#include <vector>
+
 using namespace std;
+
+struct Student{
+    string firstName;
+    string lastName;
+    int onTimeFrequency;
+    int absentFrequency;
+    int lateFrequency;
+};
+
+vector<Student> _students;
 
 void printMainMenu();
 void printTakeAttendanceMenu();
 void printViewAttendanceMenu();
+Student constructStudent(string name, string surname, int onTimeNum, int absentNum, int lateNum);
 
 int main()
 {
     //system("cls");
+    Student stu1 = constructStudent("Michael", "Mars", 0, 0, 0);
+    _students.push_back(stu1);
+    Student stu2 = constructStudent("Comet", "Albright", 2, 1, 0);
+    _students.push_back(stu2);
+    Student stu3 = constructStudent("Pollie", "Kilburn", 7, 5, 2);
+    _students.push_back(stu3);
+    Student stu4 = constructStudent("Ivy", "Brown", 4, 1, 0);
+    _students.push_back(stu4);
+    cout << _students[2].onTimeFrequency << " " << _students[2].lateFrequency << endl;
     cout<<"Agile Project"<<endl;
     
     printMainMenu();
@@ -45,7 +67,7 @@ void printMainMenu(){
     }
 }
 
-void printTakeAttendenceMenu(){
+void printTakeAttendanceMenu(){
     string input;
     
     cout<<"For each name type one of the following options: "<<endl;
@@ -70,7 +92,7 @@ void printTakeAttendenceMenu(){
     }
     else{
         cout<<"Please enter one of the listed options exactly in all lowercase!"<<endl;
-        printTakeAttendenceMenu();
+        printTakeAttendanceMenu();
     }
 }
 
@@ -112,4 +134,15 @@ void printViewAttendanceMenu(){
         cout<<"Please enter a valid number!"<<endl;
         printViewAttendanceMenu();
     }
+}
+
+Student constructStudent(string name, string surname, int onTimeNum, int absentNum, int lateNum){
+    Student stu;
+    stu.firstName = name;
+    stu.lastName = surname;
+    stu.onTimeFrequency = onTimeNum;
+    stu.absentFrequency = absentNum;
+    stu.lateFrequency = lateNum;
+
+    return stu;
 }
