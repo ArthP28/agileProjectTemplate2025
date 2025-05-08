@@ -28,7 +28,7 @@ Student constructStudent(string name, string surname, int onTimeNum, int absentN
 
 int main()
 {
-    //system("cls");
+    system(CLEAR);
     Student stu1 = constructStudent("Michael", "Mars", 0, 0, 0);
     _students.push_back(stu1);
     Student stu2 = constructStudent("Comet", "Albright", 2, 1, 0);
