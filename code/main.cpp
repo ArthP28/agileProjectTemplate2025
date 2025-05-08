@@ -45,8 +45,33 @@ void printMainMenu(){
     }
 }
 
-void printTakeAttendanceMenu(){
-    cout << "Taking attendance" << endl;
+void printTakeAttendenceMenu(){
+    string input;
+    
+    cout<<"For each name type one of the following options: "<<endl;
+    cout<<" present"<<endl;
+    cout<<" excused absent"<<endl;
+    cout<<" not excused absent"<<endl;
+    cout<<" late"<<endl;
+    
+    cin>>input;
+    
+    if(input == "present"){
+        
+    }
+    else if(input == "excused absent"){
+        
+    }
+    else if(input == "not excused absent"){
+        
+    }
+    else if(input == "late"){
+        
+    }
+    else{
+        cout<<"Please enter one of the listed options exactly in all lowercase!"<<endl;
+        printTakeAttendenceMenu();
+    }
 }
 
 void printViewAttendanceMenu(){
