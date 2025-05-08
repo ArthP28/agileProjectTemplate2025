@@ -10,7 +10,7 @@
 using namespace std;
 
 void printMainMenu();
-void printTakeAttendanceMenu();
+void printTakeAttendenceMenu();
 void printViewAttendanceMenu();
 
 int main()
@@ -33,7 +33,7 @@ void printMainMenu(){
     cin>>input;
     
     if(input == "1"){
-        printTakeAttendanceMenu();
+        printTakeAttendenceMenu();
     }
     else if(input == "2"){
         printViewAttendanceMenu();
