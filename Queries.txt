@@ -1,0 +1,36 @@
+CREATE TABLE IF NOT EXISTS "Student" (
+	"studentId"	INTEGER,
+	"firstName"	TEXT,
+	"lastName"	TEXT,
+	PRIMARY KEY("studentId")
+);
+
+CREATE TABLE IF NOT EXISTS "Section" (
+	"sectionId"	INTEGER,
+	"coureName"	TEXT,
+	"courseCode"	TEXT,
+	"meetingTime"	TEXT,
+	PRIMARY KEY("sectionId")
+);
+
+CREATE TABLE IF NOT EXISTS "StudentEnrollsInSection" (
+	"studentId"	INTEGER,
+	"sectionId"	INTEGER,
+	"seatNumber"	INTEGER,
+	FOREIGN KEY("studentId") REFERENCES "Student"("studentId"),
+	FOREIGN KEY("sectionId") REFERENCES "Section"("sectionId"),
+	PRIMARY KEY("studentId","sectionId")
+);
+
+CREATE TABLE IF NOT EXISTS "AttandanceRecording" (
+	"recordingId"	INTEGER,
+	"date"	TEXT,
+	"status"	TEXT,
+	"studentId"	INTEGER,
+	"sectionId"	INTEGER,
+	FOREIGN KEY("studentId") REFERENCES "Student"("studentId"),
+	FOREIGN KEY("sectionId") REFERENCES "Section"("sectionId"),
+	PRIMARY KEY("recordingId")
+);
+
+g++ -o main ../agileProjectTemplate2025/code/*.cpp sqlite3.o -pthread -ldl
