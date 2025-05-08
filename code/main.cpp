@@ -10,8 +10,8 @@
 using namespace std;
 
 void printMainMenu();
-void printTakeAttendenceMenu();
-void printViewAttendenceMenu();
+void printTakeAttendanceMenu();
+void printViewAttendanceMenu();
 
 int main()
 {
@@ -33,10 +33,10 @@ void printMainMenu(){
     cin>>input;
     
     if(input == "1"){
-        printTakeAttendenceMenu();
+        printTakeAttendanceMenu();
     }
     else if(input == "2"){
-        printViewAttendenceMenu();
+        printViewAttendanceMenu();
     }
     else{
 
@@ -45,10 +45,46 @@ void printMainMenu(){
     }
 }
 
-void printTakeAttendenceMenu(){
-    
+void printTakeAttendanceMenu(){
+    cout << "Taking attendance" << endl;
 }
 
-void printViewAttendenceMenu(){
-    
+void printViewAttendanceMenu(){
+    // Print out all students, then options to organize them by name, attendance (From On-time to late or from Late to On-Time), or custom order
+    string input;
+    cout << "[PLACEHOLDER ATTENDANCE DATA]" << endl;
+    cout << "What would you like to do with this data?" << endl;
+    cout << "[1] - Sort by Name" << endl;
+    cout << "[2] - Sort by On-Time First" << endl;
+    cout << "[3] - Sort by Absent First" << endl;
+    cout << "[4] - Sort by Late First" << endl;
+    cout << "[5] - View Past Records" << endl;
+    cout << "[6] - Select Another Course" << endl;
+    cout << "[7] - Return to Main Menu" << endl;
+    cin>>input;
+    if(input == "1"){
+        cout << "Sorting by name" << endl;
+    }
+    else if(input == "2"){
+        cout << "Sorting by on-time first" << endl;
+    }
+    else if(input == "3"){
+        cout << "Sorting by absent first" << endl;
+    }
+    else if(input == "4"){
+        cout << "Sorting by late first" << endl;
+    }
+    else if(input == "5"){
+        cout << "Viewing past records" << endl;
+    }
+    else if(input == "6"){
+        cout << "Selecting another course" << endl;
+    }
+    else if(input == "7"){
+        printMainMenu();
+    }
+    else{
+        cout<<"Please enter a valid number!"<<endl;
+        printViewAttendanceMenu();
+    }
 }
