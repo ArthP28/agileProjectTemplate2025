@@ -22,7 +22,7 @@ struct Student{
 vector<Student> _students;
 
 void printMainMenu();
-void printTakeAttendanceMenu();
+void printTakeAttendenceMenu();
 void printViewAttendanceMenu();
 Student constructStudent(string name, string surname, int onTimeNum, int absentNum, int lateNum);
 
@@ -55,7 +55,7 @@ void printMainMenu(){
     cin>>input;
     
     if(input == "1"){
-        printTakeAttendanceMenu();
+        printTakeAttendenceMenu();
     }
     else if(input == "2"){
         printViewAttendanceMenu();
