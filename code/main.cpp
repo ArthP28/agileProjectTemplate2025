@@ -25,11 +25,12 @@ vector<Student> _students;
 void printMainMenu();
 void printTakeAttendanceMenu();
 void printViewAttendanceMenu();
+void enrollNewStudent();
 Student constructStudent(string name, string surname, int onTimeNum, int absentNum, int lateNum, string course);
 
 int main()
 {
-    system(CLEAR);
+    //system(CLEAR);
     Student stu1 = constructStudent("Michael", "Mars", 0, 0, 0, "Software_Development");
     _students.push_back(stu1);
     Student stu2 = constructStudent("Comet", "Albright", 2, 1, 0, "Software_Development");
@@ -52,6 +53,8 @@ void printMainMenu(){
     cout<<"Please type number cooresponding to the option you want: "<<endl;
     cout<<"1: Take attendance"<<endl;
     cout<<"2: View attendance"<<endl;
+    cout<<"3: Enroll New Student"<<endl;
+    cout<<"4: Add New Course"<<endl;
     
     
     cin>>input;
@@ -61,6 +64,12 @@ void printMainMenu(){
     }
     else if(input == "2"){
         printViewAttendanceMenu();
+    }
+    else if(input == "3"){
+        enrollNewStudent();
+    }
+    else if(input == "4"){
+        cout << "Adding New Course goes here" << endl;
     }
     else{
         cout<<"Please enter a valid number!"<<endl;
@@ -171,6 +180,28 @@ void printViewAttendanceMenu(){
         cout<<"Please enter a valid number!"<<endl;
         printViewAttendanceMenu();
     }
+}
+
+void enrollNewStudent(){
+    cout << "Please add the first name, last name, and the course name of the student you want to add:" << endl;
+    string firstName;
+    string lastName;
+    string courseName;
+    cout << "First Name: "; cin >> firstName;
+    cout << "Last Name: "; cin >> lastName;
+    while(true){
+        cout << "Course Name: "; cin >> courseName;
+        if(courseName != "Software_Development"){
+            cout << "Invalid Course Name! Please try again." << endl;
+        } else {
+            break;
+        }
+    }
+    Student newStudent = constructStudent(firstName, lastName, 0, 0, 0, courseName);
+    _students.push_back(newStudent);
+    cout << newStudent.firstName << " " << newStudent.lastName << " successfully enrolled into " << newStudent.courseName << "!" << endl;
+    cout << "----------" << endl;
+    printMainMenu();
 }
 
 Student constructStudent(string name, string surname, int onTimeNum, int absentNum, int lateNum, string course){
