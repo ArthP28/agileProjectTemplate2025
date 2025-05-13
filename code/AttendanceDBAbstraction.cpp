@@ -95,3 +95,35 @@ void AttendanceDBAbstraction::InsertSection(string name, string code, string mee
 
 }
 
+void AttendanceDBAbstraction::InsertStudentEnroll(string firstName, string lastName, string courseCode) {
+	sqlite3_stmt* myStatement;
+
+    int statusOfPrep = sqlite3_prepare_v2(db, "WITH studentId AS (SELECT studentId FROM Student WHERE firstName = ? AND lastName = ?),"
+			   "sectionId AS (SELECT sectionId FROM Section WHERE courseCode = ?) INSERT INTO [StudentEnrollsInSection] ([studentId],"
+										  "[sectionId], [seatNumber]) SELECT studentId, sectionId, 1 FROM studentId, sectionId", -1, &myStatement, NULL);
+        
+	sqlite3_bind_text(myStatement, 1, firstName.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(myStatement, 2, lastName.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(myStatement, 3, courseCode.c_str(), -1, SQLITE_STATIC);
+
+        if (statusOfPrep == SQLITE_OK)
+        {
+            int statusOfStep = sqlite3_step(myStatement);
+
+            if (statusOfStep == SQLITE_DONE)
+            {
+                cout << "Successfully inserted into the database" << endl;
+            }
+            else
+            {
+                cout << "Problem inserting into the database" << endl;
+            }
+
+            sqlite3_finalize(myStatement);
+        }
+        else
+        {
+            cout << "Problem creating a prepared statement" << endl;
+        }
+
+}
