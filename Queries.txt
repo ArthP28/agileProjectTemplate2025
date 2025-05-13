@@ -35,13 +35,17 @@ CREATE TABLE IF NOT EXISTS [AttandanceRecording] (
 
 WITH studentId as (
     SELECT studentId FROM Student
-    WHERE firstName = "Andrew"
-    AND lastName = "Del Real"
+    WHERE firstName = ?
+    AND lastName = ?
 ),
 sectionId as (
     SELECT sectionId FROM Section
-    WHERE courseCode = "MTH-1"
+    WHERE courseCode = ?
 )
+
+INSERT INTO [StudentEnrollsInSection] ([studentId], [sectionId], [seatNumber]) 
+SELECT studentId, sectionId, 1
+FROM studentId, sectionId;
 
 SELECT * FROM studentId, sectionId;
 
