@@ -17,6 +17,7 @@ struct Student{
     int onTimeFrequency = 0;
     int absentFrequency = 0;
     int lateFrequency = 0;
+    string courseName;
 };
 
 vector<Student> _students;
@@ -69,6 +70,19 @@ void printMainMenu(){
 
 void printTakeAttendanceMenu(){
     string input;
+    
+    cout<<"Please enter name of course you want to take attendance for: "<<endl;
+    
+    cin>>input;
+    
+    if(input == ""){
+        
+    }
+    else{
+        cout<<"Please enter a valid course name."<<endl;
+        printTakeAttendanceMenu();
+    }
+    
     cout<<"For each name type one of the following options: "<<endl;
     cout<<" present"<<endl;
     cout<<" excused absent"<<endl;
@@ -159,13 +173,14 @@ void printViewAttendanceMenu(){
     }
 }
 
-Student constructStudent(string name, string surname, int onTimeNum, int absentNum, int lateNum){
+Student constructStudent(string name, string surname, int onTimeNum, int absentNum, int lateNum, string courseName){
     Student stu;
     stu.firstName = name;
     stu.lastName = surname;
     stu.onTimeFrequency = onTimeNum;
     stu.absentFrequency = absentNum;
     stu.lateFrequency = lateNum;
+    stu.courseName = courseName;
 
     return stu;
 }
