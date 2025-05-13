@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS [Student] (
 
 CREATE TABLE IF NOT EXISTS [Section] (
 	[sectionId]	INTEGER,
-	[coureName]	TEXT,
+	[courseName]	TEXT,
 	[courseCode]	TEXT,
 	[meetingTime]	TEXT,
 	PRIMARY KEY([sectionId])
@@ -32,5 +32,19 @@ CREATE TABLE IF NOT EXISTS [AttandanceRecording] (
 	FOREIGN KEY([sectionId]) REFERENCES [Section]([sectionId]),
 	PRIMARY KEY([recordingId])
 );
+
+WITH studentId as (
+    SELECT studentId FROM Student
+    WHERE firstName = "Andrew"
+    AND lastName = "Del Real"
+),
+sectionId as (
+    SELECT sectionId FROM Section
+    WHERE courseCode = "MTH-1"
+)
+
+SELECT * FROM studentId, sectionId;
+
+INSERT INTO [Student] ([studentId], [firstName], [lastName]) VALUES (?, ?, ?)
 
 g++ -o main ../agileProjectTemplate2025/code/*.cpp sqlite3.o -pthread -ldl
