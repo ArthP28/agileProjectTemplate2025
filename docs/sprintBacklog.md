@@ -33,5 +33,5 @@
 | Task ID | Task Description | User Story ID | Assigned To | Status | Dependencies |
 |---------|------------------|---------------|-------------|--------|--------------|
 | T-1 | Integrate Student Data into Database | US-1 | Andy, Brandon | In Progress | None |
-| T-2 | Work on functionality to choose course | US-5 | Megan | To Do | None |
-| T-3 | Add ability to enroll new students to course | US-6 | Arthur | To Do | None |
+| T-2 | Work on functionality to choose course | US-5 | Megan | In Progress | T-1 |
+| T-3 | Add ability to enroll new students to course | US-6 | Arthur | Complete | None |
