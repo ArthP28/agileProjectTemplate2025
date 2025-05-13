@@ -74,25 +74,42 @@ void printTakeAttendanceMenu(){
     cout<<" excused absent"<<endl;
     cout<<" not excused absent"<<endl;
     cout<<" late"<<endl;
+    cout<<endl;
+    cout<<"Or type return to return to the main menu"<<endl;
+    cout<<endl;
     
-    cin>>input;
+    //for each student in global vector
+    for (int i = 0; i < _students.size(); i++) {
+        cout<<_students.at(i).firstName<<" "<<_students.at(i).lastName<<": "<<endl;
+        cin>>input;
+        cout<<endl;
+        
+        if(input == "present"){
+            _students.at(i).onTimeFrequency++;
+        }
+        else if(input == "excused absent"){
+            _students.at(i).absentFrequency++;
+        }
+        else if(input == "not excused absent"){
+            _students.at(i).absentFrequency++;
+        }
+        else if(input == "late"){
+            _students.at(i).lateFrequency++;
+        }
+        else if(input == "return"){
+            printMainMenu();
+        }
+        else{
+            cout<<"Please enter one of the listed options exactly in all lowercase!"<<endl;
+            printTakeAttendanceMenu();
+        }
+    }
     
-    if(input == "present"){
-        
-    }
-    else if(input == "excused absent"){
-        
-    }
-    else if(input == "not excused absent"){
-        
-    }
-    else if(input == "late"){
-        
-    }
-    else{
-        cout<<"Please enter one of the listed options exactly in all lowercase!"<<endl;
-        printTakeAttendanceMenu();
-    }
+    cout<<endl;
+    cout<<"Attendance done!"<<endl;
+    cout<<endl;
+    
+    printMainMenu();
 }
 
 void printViewAttendanceMenu(){
