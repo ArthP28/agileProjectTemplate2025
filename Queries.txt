@@ -47,6 +47,20 @@ INSERT INTO [StudentEnrollsInSection] ([studentId], [sectionId], [seatNumber])
 SELECT studentId, sectionId, 1
 FROM studentId, sectionId;
 
+WITH studentId as (
+    SELECT studentId FROM Student
+    WHERE firstName = ?
+    AND lastName = ?
+),
+sectionId as (
+    SELECT sectionId FROM Section
+    WHERE courseCode = ?
+)
+
+INSERT INTO [AttendanceRecording] ([date], [status], [studentId], [sectionId]) 
+SELECT ?, ?, studentId, sectionId
+FROM studentId, sectionId;
+
 SELECT * FROM studentId, sectionId;
 
 INSERT INTO [Student] ([studentId], [firstName], [lastName]) VALUES (?, ?, ?)
