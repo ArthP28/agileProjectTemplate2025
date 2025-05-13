@@ -25,18 +25,18 @@ vector<Student> _students;
 void printMainMenu();
 void printTakeAttendanceMenu();
 void printViewAttendanceMenu();
-Student constructStudent(string name, string surname, int onTimeNum, int absentNum, int lateNum);
+Student constructStudent(string name, string surname, int onTimeNum, int absentNum, int lateNum, string course);
 
 int main()
 {
     system(CLEAR);
-    Student stu1 = constructStudent("Michael", "Mars", 0, 0, 0);
+    Student stu1 = constructStudent("Michael", "Mars", 0, 0, 0, "Software_Development");
     _students.push_back(stu1);
-    Student stu2 = constructStudent("Comet", "Albright", 2, 1, 0);
+    Student stu2 = constructStudent("Comet", "Albright", 2, 1, 0, "Software_Development");
     _students.push_back(stu2);
-    Student stu3 = constructStudent("Pollie", "Kilburn", 7, 5, 2);
+    Student stu3 = constructStudent("Pollie", "Kilburn", 7, 5, 2, "Software_Development");
     _students.push_back(stu3);
-    Student stu4 = constructStudent("Ivy", "Brown", 4, 1, 0);
+    Student stu4 = constructStudent("Ivy", "Brown", 4, 1, 0, "Software_Development");
     _students.push_back(stu4);
     cout << _students[2].onTimeFrequency << " " << _students[2].lateFrequency << endl;
     cout<<"Agile Project"<<endl;
@@ -53,6 +53,7 @@ void printMainMenu(){
     cout<<"1: Take attendance"<<endl;
     cout<<"2: View attendance"<<endl;
     
+    
     cin>>input;
     
     if(input == "1"){
@@ -62,7 +63,6 @@ void printMainMenu(){
         printViewAttendanceMenu();
     }
     else{
-
         cout<<"Please enter a valid number!"<<endl;
         printMainMenu();
     }
@@ -75,11 +75,11 @@ void printTakeAttendanceMenu(){
     
     cin>>input;
     
-    if(input == ""){
+    if(input == "Software_Development"){
         
     }
     else{
-        cout<<"Please enter a valid course name."<<endl;
+        cout<<"Please enter a valid course name!"<<endl;
         printTakeAttendanceMenu();
     }
     
@@ -173,14 +173,14 @@ void printViewAttendanceMenu(){
     }
 }
 
-Student constructStudent(string name, string surname, int onTimeNum, int absentNum, int lateNum, string courseName){
+Student constructStudent(string name, string surname, int onTimeNum, int absentNum, int lateNum, string course){
     Student stu;
     stu.firstName = name;
     stu.lastName = surname;
     stu.onTimeFrequency = onTimeNum;
     stu.absentFrequency = absentNum;
     stu.lateFrequency = lateNum;
-    stu.courseName = courseName;
+    stu.courseName = course;
 
     return stu;
 }
