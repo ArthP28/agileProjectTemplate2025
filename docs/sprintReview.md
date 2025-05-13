@@ -26,8 +26,8 @@
     - blank
   - **Continue:**
     - Outputting attendance worked well and should be worked on to sort student data
-   
-  ### Sprint #X:
+
+### Sprint #X:
 - **Completed User Stories:**
   - [List completed user stories]
 - **Demo Summary:**
