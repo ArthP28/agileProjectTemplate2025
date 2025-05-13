@@ -16,14 +16,14 @@
   - Data Integration of Students remains incomplete
     - Enrolling (Adding) Students to the database remains in development
 - **Stakeholder Feedback:**
-  - 
+  - blank
 - **Process**
   - **Start:**
     - Begin work on sorting student data by attendance
     - Begin finishing up work on integrating student data to the database
     - Implement functionality to choose between multiple courses
   - **Stop:**
-    - 
+    - blank
   - **Continue:**
     - Outputting attendance worked well and should be worked on to sort student data
    
