@@ -13,7 +13,6 @@
 using namespace std;
 
 //
-
 void printMainMenu();
 void printTakeAttendanceMenu();
 void printViewAttendanceMenu();
@@ -46,6 +45,8 @@ int main()
     
     printMainMenu();
     
+
+	db.getCourses();
 
     // string in = "y";
 	// while (in != "n") {
@@ -98,18 +99,13 @@ void printMainMenu(){
 
 void printTakeAttendanceMenu(){
     string input;
+    vector<Student> students;
     
     cout<<"Please enter number1 of course you want to take attendance for: "<<endl;
     
     cin>>input;
     
-    if(input == "49"){
-        
-    }
-    else{
-        cout<<"Please enter a valid course name!"<<endl;
-        printTakeAttendanceMenu();
-    }
+    students = db.GetAllStudentsBySection(input);
     
     cout<<"For each name type one of the following options: "<<endl;
     cout<<" present"<<endl;
@@ -130,10 +126,10 @@ void printTakeAttendanceMenu(){
             students.at(i).onTimeFrequency++;
         }
         else if(input == "excused_absent"){
-            students.at(i).abscenceFrequency++;
+            students.at(i).absentFrequency++;
         }
         else if(input == "not_excused_absent"){
-            students.at(i).abscenceFrequency++;
+            students.at(i).absentFrequency++;
         }
         else if(input == "late"){
             students.at(i).lateFrequency++;
@@ -161,7 +157,7 @@ void printViewAttendanceMenu(){
     for(int i = 0; i < students.size(); i++){
         cout << i + 1 << ": " << students[i].firstName << " " << students[i].lastName << endl;
         cout << "How many class days On Time: " << students[i].onTimeFrequency << endl;
-        cout << "How many class days Absent (Excused and Inexcused): " << students[i].abscenceFrequency << endl;
+        cout << "How many class days Absent (Excused and Inexcused): " << students[i].absentFrequency << endl;
         cout << "How many class days Late: " << students[i].lateFrequency << endl;
         cout << endl;
     }
@@ -228,7 +224,7 @@ Student constructStudent(string name, string surname, int onTimeNum, int absentN
     stu.firstName = name;
     stu.lastName = surname;
     stu.onTimeFrequency = onTimeNum;
-    stu.abscenceFrequency = absentNum;
+    stu.absentFrequency = absentNum;
     stu.lateFrequency = lateNum;
     stu.courseName = course;
 

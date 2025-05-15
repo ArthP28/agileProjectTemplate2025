@@ -18,7 +18,7 @@ void AttendanceDBAbstraction::createTables() {
 	queries.push_back(sql);
 	sql = "CREATE TABLE IF NOT EXISTS [StudentEnrollsInSection] ([studentId]	INTEGER, [sectionId]	INTEGER, [seatNumber]	INTEGER, FOREIGN KEY([studentId]) REFERENCES [Student]([studentId]), FOREIGN KEY([sectionId]) REFERENCES [Section]([sectionId]), PRIMARY KEY([studentId],[sectionId]))";
 	queries.push_back(sql);
-	sql = "CREATE TABLE IF NOT EXISTS [AttandanceRecording] ([recordingId]	INTEGER, [date]	TEXT, [status]	TEXT, [studentId]	INTEGER, [sectionId]	INTEGER, FOREIGN KEY([studentId]) REFERENCES [Student]([studentId]), FOREIGN KEY([sectionId]) REFERENCES [Section]([sectionId]), PRIMARY KEY([recordingId]))";
+	sql = "CREATE TABLE IF NOT EXISTS [AttendanceRecording] ([recordingId]	INTEGER, [date]	TEXT, [status]	TEXT, [studentId]	INTEGER, [sectionId]	INTEGER, FOREIGN KEY([studentId]) REFERENCES [Student]([studentId]), FOREIGN KEY([sectionId]) REFERENCES [Section]([sectionId]), PRIMARY KEY([recordingId]))";
 	queries.push_back(sql);
 
     sqlite3_stmt* myStatement;
@@ -125,8 +125,44 @@ void AttendanceDBAbstraction::InsertStudentEnroll(string firstName, string lastN
         {
             cout << "Problem creating a prepared statement" << endl;
         }
+}
+
+void AttendanceDBAbstraction::InsertAttendance(string firstName, string lastName, string courseCode, string date, string status) {
+	sqlite3_stmt* myStatement;
+
+    int statusOfPrep = sqlite3_prepare_v2(db, "WITH studentId AS (SELECT studentId FROM Student WHERE firstName = ? AND lastName = ?),"
+										  "sectionId AS (SELECT sectionId FROM Section WHERE courseCode = ?)"
+										  "INSERT INTO [AttendanceRecording] ([date], [status], [studentId], [sectionId])"
+										  "SELECT ?, ?, studentId, sectionId FROM studentId, sectionId", -1, &myStatement, NULL);
+        
+	sqlite3_bind_text(myStatement, 1, firstName.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(myStatement, 2, lastName.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(myStatement, 3, courseCode.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_text(myStatement, 4, date.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(myStatement, 5, status.c_str(), -1, SQLITE_STATIC);
+
+        if (statusOfPrep == SQLITE_OK)
+        {
+            int statusOfStep = sqlite3_step(myStatement);
+
+            if (statusOfStep == SQLITE_DONE)
+            {
+                cout << "Successfully inserted into the database" << endl;
+            }
+            else
+            {
+                cout << "Problem inserting into the database" << endl;
+            }
+
+            sqlite3_finalize(myStatement);
+        }
+        else
+        {
+            cout << "Problem creating a prepared statement" << endl;
+        }
 
 }
+
 
 vector<Student> AttendanceDBAbstraction::GetAllStudentsBySection(string courseCode) {
     sqlite3_stmt* myStatement;
@@ -158,4 +194,31 @@ vector<Student> AttendanceDBAbstraction::GetAllStudentsBySection(string courseCo
     }
 
     return retval;
+}
+
+void AttendanceDBAbstraction::getCourses() {
+	sqlite3_stmt* myStatement;
+
+    int statusOfPrep = sqlite3_prepare_v2(db, "SELECT courseName, courseCode FROM [Section]", -1, &myStatement, NULL);
+
+        if (statusOfPrep == SQLITE_OK)
+        {
+            int statusOfStep = sqlite3_step(myStatement);
+			while (statusOfStep == SQLITE_ROW) {
+            string courseName = ((char*)sqlite3_column_text(myStatement, 0));
+            string courseCode = ((char*)sqlite3_column_text(myStatement, 1));
+
+             cout << "Course Name: " << courseName << endl;
+            cout << "Course Code: " << courseCode << endl << endl;
+
+            statusOfStep = sqlite3_step(myStatement);
+        }
+
+            sqlite3_finalize(myStatement);
+        }
+        else
+        {
+            cout << "Problem creating a prepared statement" << endl;
+        }
+
 }
