@@ -12,14 +12,7 @@
 #include "AttendanceDBAbstraction.h"
 using namespace std;
 
-struct Student{
-    string firstName = "";
-    string lastName = "";
-    int onTimeFrequency = 0;
-    int absentFrequency = 0;
-    int lateFrequency = 0;
-    string courseName;
-};
+//
 
 vector<Student> _students;
 
@@ -108,11 +101,11 @@ void printMainMenu(){
 void printTakeAttendanceMenu(){
     string input;
     
-    cout<<"Please enter name of course you want to take attendance for: "<<endl;
+    cout<<"Please enter number1 of course you want to take attendance for: "<<endl;
     
     cin>>input;
     
-    if(input == "Software_Development"){
+    if(input == "49"){
         
     }
     else{
@@ -139,10 +132,10 @@ void printTakeAttendanceMenu(){
             _students.at(i).onTimeFrequency++;
         }
         else if(input == "excused_absent"){
-            _students.at(i).absentFrequency++;
+            _students.at(i).abscenceFrequency++;
         }
         else if(input == "not_excused_absent"){
-            _students.at(i).absentFrequency++;
+            _students.at(i).abscenceFrequency++;
         }
         else if(input == "late"){
             _students.at(i).lateFrequency++;
@@ -170,7 +163,7 @@ void printViewAttendanceMenu(){
     for(int i = 0; i < _students.size(); i++){
         cout << i + 1 << ": " << _students[i].firstName << " " << _students[i].lastName << endl;
         cout << "How many class days On Time: " << _students[i].onTimeFrequency << endl;
-        cout << "How many class days Absent (Excused and Inexcused): " << _students[i].absentFrequency << endl;
+        cout << "How many class days Absent (Excused and Inexcused): " << _students[i].abscenceFrequency << endl;
         cout << "How many class days Late: " << _students[i].lateFrequency << endl;
         cout << endl;
     }
@@ -237,7 +230,7 @@ Student constructStudent(string name, string surname, int onTimeNum, int absentN
     stu.firstName = name;
     stu.lastName = surname;
     stu.onTimeFrequency = onTimeNum;
-    stu.absentFrequency = absentNum;
+    stu.abscenceFrequency = absentNum;
     stu.lateFrequency = lateNum;
     stu.courseName = course;
 
