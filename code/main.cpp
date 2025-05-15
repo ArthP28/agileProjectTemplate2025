@@ -12,15 +12,6 @@
 #include "AttendanceDBAbstraction.h"
 using namespace std;
 
-struct Student{
-    string firstName = "";
-    string lastName = "";
-    int onTimeFrequency = 0;
-    int absentFrequency = 0;
-    int lateFrequency = 0;
-    string courseName;
-};
-
 vector<Student> _students;
 
 void printMainMenu();
