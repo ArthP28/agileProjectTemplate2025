@@ -76,3 +76,5 @@ ORDER BY lastName ASC;
 INSERT INTO [Student] ([studentId], [firstName], [lastName]) VALUES (?, ?, ?)
 
 g++ -o main ../agileProjectTemplate2025/code/*.cpp sqlite3.o -pthread -ldl
+
+g++ -o main ./*.cpp ../../out/sqlite3.o -pthread -ldl
