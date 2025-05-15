@@ -18,7 +18,7 @@ void AttendanceDBAbstraction::createTables() {
 	queries.push_back(sql);
 	sql = "CREATE TABLE IF NOT EXISTS [StudentEnrollsInSection] ([studentId]	INTEGER, [sectionId]	INTEGER, [seatNumber]	INTEGER, FOREIGN KEY([studentId]) REFERENCES [Student]([studentId]), FOREIGN KEY([sectionId]) REFERENCES [Section]([sectionId]), PRIMARY KEY([studentId],[sectionId]))";
 	queries.push_back(sql);
-	sql = "CREATE TABLE IF NOT EXISTS [AttandanceRecording] ([recordingId]	INTEGER, [date]	TEXT, [status]	TEXT, [studentId]	INTEGER, [sectionId]	INTEGER, FOREIGN KEY([studentId]) REFERENCES [Student]([studentId]), FOREIGN KEY([sectionId]) REFERENCES [Section]([sectionId]), PRIMARY KEY([recordingId]))";
+	sql = "CREATE TABLE IF NOT EXISTS [AttendanceRecording] ([recordingId]	INTEGER, [date]	TEXT, [status]	TEXT, [studentId]	INTEGER, [sectionId]	INTEGER, FOREIGN KEY([studentId]) REFERENCES [Student]([studentId]), FOREIGN KEY([sectionId]) REFERENCES [Section]([sectionId]), PRIMARY KEY([recordingId]))";
 	queries.push_back(sql);
 
     sqlite3_stmt* myStatement;
