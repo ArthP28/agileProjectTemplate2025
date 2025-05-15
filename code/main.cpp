@@ -159,7 +159,7 @@ void printViewAttendanceMenu(){
     for(int i = 0; i < _students.size(); i++){
         cout << i + 1 << ": " << _students[i].firstName << " " << _students[i].lastName << endl;
         cout << "How many class days On Time: " << _students[i].onTimeFrequency << endl;
-        cout << "How many class days Absent (Excused and Inexcused): " << _students[i].abscenceFrequency << endl;
+        cout << "How many class days Absent (Excused and Inexcused): " << _students[i].absentFrequency << endl;
         cout << "How many class days Late: " << _students[i].lateFrequency << endl;
         cout << endl;
     }
@@ -226,7 +226,7 @@ Student constructStudent(string name, string surname, int onTimeNum, int absentN
     stu.firstName = name;
     stu.lastName = surname;
     stu.onTimeFrequency = onTimeNum;
-    stu.abscenceFrequency = absentNum;
+    stu.absentFrequency = absentNum;
     stu.lateFrequency = lateNum;
     stu.courseName = course;
 
