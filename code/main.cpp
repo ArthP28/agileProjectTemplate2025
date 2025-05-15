@@ -14,5 +14,6 @@ int main()
         cout << student.firstName << endl;
         cout << student.lastName << endl;
     }
+
     return 0;
 }
