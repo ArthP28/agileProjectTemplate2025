@@ -123,16 +123,16 @@ void printTakeAttendanceMenu(){
         cout<<endl;
         
         if(input == "present"){
-            students.at(i).onTimeFrequency++;
+            db.InsertAttendance(students.at(i).firstName, students.at(i).lastName, input, "5/15/2025", "present");
         }
         else if(input == "excused_absent"){
-            students.at(i).absentFrequency++;
+            db.InsertAttendance(students.at(i).firstName, students.at(i).lastName, input, "5/15/2025", "excused absent");
         }
         else if(input == "not_excused_absent"){
-            students.at(i).absentFrequency++;
+            db.InsertAttendance(students.at(i).firstName, students.at(i).lastName, input, "5/15/2025", "not excused absent");
         }
         else if(input == "late"){
-            students.at(i).lateFrequency++;
+            db.InsertAttendance(students.at(i).firstName, students.at(i).lastName, input, "5/15/2025", "late");
         }
         else if(input == "return"){
             printMainMenu();
