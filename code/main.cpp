@@ -49,6 +49,8 @@ int main()
         cout << student.lastName << endl;
     }
 
+	db.getCourses();
+
     // string in = "y";
 	// while (in != "n") {
 	// 	string id;

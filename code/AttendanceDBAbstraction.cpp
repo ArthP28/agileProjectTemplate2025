@@ -195,3 +195,30 @@ vector<Student> AttendanceDBAbstraction::GetAllStudentsBySection(string courseCo
 
     return retval;
 }
+
+void AttendanceDBAbstraction::getCourses() {
+	sqlite3_stmt* myStatement;
+
+    int statusOfPrep = sqlite3_prepare_v2(db, "SELECT courseName, courseCode FROM [Section]", -1, &myStatement, NULL);
+
+        if (statusOfPrep == SQLITE_OK)
+        {
+            int statusOfStep = sqlite3_step(myStatement);
+			while (statusOfStep == SQLITE_ROW) {
+            string courseName = ((char*)sqlite3_column_text(myStatement, 0));
+            string courseCode = ((char*)sqlite3_column_text(myStatement, 1));
+
+             cout << "Course Name: " << courseName << endl;
+            cout << "Course Code: " << courseCode << endl << endl;
+
+            statusOfStep = sqlite3_step(myStatement);
+        }
+
+            sqlite3_finalize(myStatement);
+        }
+        else
+        {
+            cout << "Problem creating a prepared statement" << endl;
+        }
+
+}

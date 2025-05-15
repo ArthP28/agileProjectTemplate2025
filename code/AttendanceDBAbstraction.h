@@ -22,6 +22,7 @@ public:
 	void InsertSection(string name, string code, string meetingTime);
 	void InsertStudentEnroll(string firstName, string lastName, string courseCode);
 	void InsertAttendance(string firstName, string lastName, string courseCode, string date, string status);
+	void getCourses();
 	vector<Student> GetAllStudentsBySection(string courseCode);
 private:
     void createTables();
