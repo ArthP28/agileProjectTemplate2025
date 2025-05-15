@@ -9,16 +9,10 @@
 #include <iostream>
 #include <vector>
 
+#include "AttendanceDBAbstraction.h"
 using namespace std;
 
-struct Student{
-    string firstName = "";
-    string lastName = "";
-    int onTimeFrequency = 0;
-    int absentFrequency = 0;
-    int lateFrequency = 0;
-    string courseName;
-};
+//
 
 AttendanceDBAbstraction db("./StudentAttendance.sqlite");
 vector<Student> _students;
@@ -45,36 +39,7 @@ int main()
     
     printMainMenu();
     
-<<<<<<< Updated upstream
-=======
-    
-	// db.InsertStudent("201203", "Andrew", "Del Real");
-	// db.InsertSection("Mahoney Baloney", "49", "SMTWRF");
-	// db.InsertStudentEnroll("Andrew", "Del Real", "49");
-    vector<Student> students = db.GetAllStudentsBySection("49");
 
-    for (auto student : students) {
-        cout << student.firstName << endl;
-        cout << student.lastName << endl;
-    }
-
-    // string in = "y";
-	// while (in != "n") {
-	// 	string id;
-	// 	string first;
-	// 	string last;
-	// 	cout << "id\n";
-	// 	cin >> id;
-	// 	cout << "first\n";
-	// 	cin >> first;
-	// 	cout << "last\n";
-	// 	cin >> last;
-	// 	db.InsertStudent(id, first, last);
-	// 	cout << "Continue?\n";
-	// 	cin >> in;
-	// }
-
->>>>>>> Stashed changes
     return 0;
 }
 
@@ -112,21 +77,13 @@ void printTakeAttendanceMenu(){
     string input;
     vector<Student> students;
     
-    cout<<"Please enter name of course you want to take attendance for: "<<endl;
+    cout<<"Please enter number1 of course you want to take attendance for: "<<endl;
     
     cin>>input;
     
-<<<<<<< Updated upstream
-    if(input == "Software_Development"){
-        
-    }
-    else{
-        cout<<"Please enter a valid course name!"<<endl;
-        printTakeAttendanceMenu();
-    }
-=======
+
     students = db.GetAllStudentsBySection(input);
->>>>>>> Stashed changes
+
     
     cout<<"For each name type one of the following options: "<<endl;
     cout<<" present"<<endl;
@@ -147,17 +104,11 @@ void printTakeAttendanceMenu(){
             students.at(i).onTimeFrequency++;
         }
         else if(input == "excused_absent"){
-<<<<<<< Updated upstream
-            _students.at(i).absentFrequency++;
-        }
-        else if(input == "not_excused_absent"){
-            _students.at(i).absentFrequency++;
-=======
+
             students.at(i).abscenceFrequency++;
         }
         else if(input == "not_excused_absent"){
             students.at(i).abscenceFrequency++;
->>>>>>> Stashed changes
         }
         else if(input == "late"){
             students.at(i).lateFrequency++;
