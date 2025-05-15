@@ -14,6 +14,7 @@ using namespace std;
 
 //
 
+AttendanceDBAbstraction db("./StudentAttendance.sqlite");
 vector<Student> _students;
 
 void printMainMenu();
@@ -38,7 +39,7 @@ int main()
     
     printMainMenu();
     
-    AttendanceDBAbstraction db("./StudentAttendance.sqlite");
+    
 	// db.InsertStudent("201203", "Andrew", "Del Real");
 	// db.InsertSection("Mahoney Baloney", "49", "SMTWRF");
 	// db.InsertStudentEnroll("Andrew", "Del Real", "49");
@@ -100,18 +101,13 @@ void printMainMenu(){
 
 void printTakeAttendanceMenu(){
     string input;
+    vector<Student> students;
     
     cout<<"Please enter number1 of course you want to take attendance for: "<<endl;
     
     cin>>input;
     
-    if(input == "49"){
-        
-    }
-    else{
-        cout<<"Please enter a valid course name!"<<endl;
-        printTakeAttendanceMenu();
-    }
+    students = db.GetAllStudentsBySection(input);
     
     cout<<"For each name type one of the following options: "<<endl;
     cout<<" present"<<endl;
@@ -123,22 +119,22 @@ void printTakeAttendanceMenu(){
     cout<<endl;
     
     //for each student in global vector
-    for (int i = 0; i < _students.size(); i++) {
-        cout<<_students.at(i).firstName<<" "<<_students.at(i).lastName<<": "<<endl;
+    for (int i = 0; i < students.size(); i++) {
+        cout<<students.at(i).firstName<<" "<<students.at(i).lastName<<": "<<endl;
         cin>>input;
         cout<<endl;
         
         if(input == "present"){
-            _students.at(i).onTimeFrequency++;
+            students.at(i).onTimeFrequency++;
         }
         else if(input == "excused_absent"){
-            _students.at(i).abscenceFrequency++;
+            students.at(i).abscenceFrequency++;
         }
         else if(input == "not_excused_absent"){
-            _students.at(i).abscenceFrequency++;
+            students.at(i).abscenceFrequency++;
         }
         else if(input == "late"){
-            _students.at(i).lateFrequency++;
+            students.at(i).lateFrequency++;
         }
         else if(input == "return"){
             printMainMenu();
