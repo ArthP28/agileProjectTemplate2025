@@ -20,6 +20,7 @@ struct Student{
     string courseName;
 };
 
+AttendanceDBAbstraction db("./StudentAttendance.sqlite");
 vector<Student> _students;
 
 void printMainMenu();
@@ -44,6 +45,36 @@ int main()
     
     printMainMenu();
     
+<<<<<<< Updated upstream
+=======
+    
+	// db.InsertStudent("201203", "Andrew", "Del Real");
+	// db.InsertSection("Mahoney Baloney", "49", "SMTWRF");
+	// db.InsertStudentEnroll("Andrew", "Del Real", "49");
+    vector<Student> students = db.GetAllStudentsBySection("49");
+
+    for (auto student : students) {
+        cout << student.firstName << endl;
+        cout << student.lastName << endl;
+    }
+
+    // string in = "y";
+	// while (in != "n") {
+	// 	string id;
+	// 	string first;
+	// 	string last;
+	// 	cout << "id\n";
+	// 	cin >> id;
+	// 	cout << "first\n";
+	// 	cin >> first;
+	// 	cout << "last\n";
+	// 	cin >> last;
+	// 	db.InsertStudent(id, first, last);
+	// 	cout << "Continue?\n";
+	// 	cin >> in;
+	// }
+
+>>>>>>> Stashed changes
     return 0;
 }
 
@@ -79,11 +110,13 @@ void printMainMenu(){
 
 void printTakeAttendanceMenu(){
     string input;
+    vector<Student> students;
     
     cout<<"Please enter name of course you want to take attendance for: "<<endl;
     
     cin>>input;
     
+<<<<<<< Updated upstream
     if(input == "Software_Development"){
         
     }
@@ -91,33 +124,43 @@ void printTakeAttendanceMenu(){
         cout<<"Please enter a valid course name!"<<endl;
         printTakeAttendanceMenu();
     }
+=======
+    students = db.GetAllStudentsBySection(input);
+>>>>>>> Stashed changes
     
     cout<<"For each name type one of the following options: "<<endl;
     cout<<" present"<<endl;
-    cout<<" excused absent"<<endl;
-    cout<<" not excused absent"<<endl;
+    cout<<" excused_absent"<<endl;
+    cout<<" not_excused_absent"<<endl;
     cout<<" late"<<endl;
     cout<<endl;
     cout<<"Or type return to return to the main menu"<<endl;
     cout<<endl;
     
     //for each student in global vector
-    for (int i = 0; i < _students.size(); i++) {
-        cout<<_students.at(i).firstName<<" "<<_students.at(i).lastName<<": "<<endl;
+    for (int i = 0; i < students.size(); i++) {
+        cout<<students.at(i).firstName<<" "<<students.at(i).lastName<<": "<<endl;
         cin>>input;
         cout<<endl;
         
         if(input == "present"){
-            _students.at(i).onTimeFrequency++;
+            students.at(i).onTimeFrequency++;
         }
         else if(input == "excused_absent"){
+<<<<<<< Updated upstream
             _students.at(i).absentFrequency++;
         }
         else if(input == "not_excused_absent"){
             _students.at(i).absentFrequency++;
+=======
+            students.at(i).abscenceFrequency++;
+        }
+        else if(input == "not_excused_absent"){
+            students.at(i).abscenceFrequency++;
+>>>>>>> Stashed changes
         }
         else if(input == "late"){
-            _students.at(i).lateFrequency++;
+            students.at(i).lateFrequency++;
         }
         else if(input == "return"){
             printMainMenu();
