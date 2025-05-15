@@ -130,10 +130,10 @@ void printTakeAttendanceMenu(){
             students.at(i).onTimeFrequency++;
         }
         else if(input == "excused_absent"){
-            students.at(i).abscenceFrequency++;
+            students.at(i).absentFrequency++;
         }
         else if(input == "not_excused_absent"){
-            students.at(i).abscenceFrequency++;
+            students.at(i).absentFrequency++;
         }
         else if(input == "late"){
             students.at(i).lateFrequency++;
