@@ -14,40 +14,38 @@ using namespace std;
 
 //
 
-vector<Student> _students;
-
 void printMainMenu();
 void printTakeAttendanceMenu();
 void printViewAttendanceMenu();
 void enrollNewStudent();
 Student constructStudent(string name, string surname, int onTimeNum, int absentNum, int lateNum, string course);
+AttendanceDBAbstraction db("./StudentAttendance.sqlite");
+vector<Student> students = db.GetAllStudentsBySection("49");
 
 int main()
 {
-    //system(CLEAR);
-    Student stu1 = constructStudent("Michael", "Mars", 0, 0, 0, "Software_Development");
-    _students.push_back(stu1);
-    Student stu2 = constructStudent("Comet", "Albright", 2, 1, 0, "Software_Development");
-    _students.push_back(stu2);
-    Student stu3 = constructStudent("Pollie", "Kilburn", 7, 5, 2, "Software_Development");
-    _students.push_back(stu3);
-    Student stu4 = constructStudent("Ivy", "Brown", 4, 1, 0, "Software_Development");
-    _students.push_back(stu4);
-    cout << _students[2].onTimeFrequency << " " << _students[2].lateFrequency << endl;
-    cout<<"Agile Project"<<endl;
-    
-    printMainMenu();
-    
-    AttendanceDBAbstraction db("./StudentAttendance.sqlite");
+    db.InsertStudent("279979", "Comet", "Albright");
+    db.InsertStudent("997744", "Michael", "Mars");
+    db.InsertStudent("419472", "Pollie", "Kilburn");
+    db.InsertStudent("334455", "Ivy", "Brown");
+    db.InsertStudentEnroll("Michael", "Mars", "49");
+    db.InsertStudentEnroll("Comet", "Albright", "49");
+    db.InsertStudentEnroll("Pollie", "Kilburn", "49");
+    db.InsertStudentEnroll("Ivy", "Brown", "49");
 	// db.InsertStudent("201203", "Andrew", "Del Real");
 	// db.InsertSection("Mahoney Baloney", "49", "SMTWRF");
 	// db.InsertStudentEnroll("Andrew", "Del Real", "49");
-    vector<Student> students = db.GetAllStudentsBySection("49");
+
+    students = db.GetAllStudentsBySection("49");
 
     for (auto student : students) {
         cout << student.firstName << endl;
         cout << student.lastName << endl;
     }
+    cout<<"Agile Project"<<endl;
+    
+    printMainMenu();
+    
 
     // string in = "y";
 	// while (in != "n") {
@@ -123,22 +121,22 @@ void printTakeAttendanceMenu(){
     cout<<endl;
     
     //for each student in global vector
-    for (int i = 0; i < _students.size(); i++) {
-        cout<<_students.at(i).firstName<<" "<<_students.at(i).lastName<<": "<<endl;
+    for (int i = 0; i < students.size(); i++) {
+        cout<<students.at(i).firstName<<" "<<students.at(i).lastName<<": "<<endl;
         cin>>input;
         cout<<endl;
         
         if(input == "present"){
-            _students.at(i).onTimeFrequency++;
+            students.at(i).onTimeFrequency++;
         }
         else if(input == "excused_absent"){
-            _students.at(i).abscenceFrequency++;
+            students.at(i).abscenceFrequency++;
         }
         else if(input == "not_excused_absent"){
-            _students.at(i).abscenceFrequency++;
+            students.at(i).abscenceFrequency++;
         }
         else if(input == "late"){
-            _students.at(i).lateFrequency++;
+            students.at(i).lateFrequency++;
         }
         else if(input == "return"){
             printMainMenu();
@@ -160,11 +158,11 @@ void printViewAttendanceMenu(){
     // Print out all students, then options to organize them by name, attendance (From On-time to late or from Late to On-Time), or custom order
     string input;
     cout << "[PLACEHOLDER ATTENDANCE DATA]" << endl;
-    for(int i = 0; i < _students.size(); i++){
-        cout << i + 1 << ": " << _students[i].firstName << " " << _students[i].lastName << endl;
-        cout << "How many class days On Time: " << _students[i].onTimeFrequency << endl;
-        cout << "How many class days Absent (Excused and Inexcused): " << _students[i].abscenceFrequency << endl;
-        cout << "How many class days Late: " << _students[i].lateFrequency << endl;
+    for(int i = 0; i < students.size(); i++){
+        cout << i + 1 << ": " << students[i].firstName << " " << students[i].lastName << endl;
+        cout << "How many class days On Time: " << students[i].onTimeFrequency << endl;
+        cout << "How many class days Absent (Excused and Inexcused): " << students[i].abscenceFrequency << endl;
+        cout << "How many class days Late: " << students[i].lateFrequency << endl;
         cout << endl;
     }
     cout << "What would you like to do with this data?" << endl;
@@ -219,7 +217,7 @@ void enrollNewStudent(){
         }
     }
     Student newStudent = constructStudent(firstName, lastName, 0, 0, 0, courseName);
-    _students.push_back(newStudent);
+    students.push_back(newStudent);
     cout << newStudent.firstName << " " << newStudent.lastName << " successfully enrolled into " << newStudent.courseName << "!" << endl;
     cout << "----------" << endl;
     printMainMenu();
