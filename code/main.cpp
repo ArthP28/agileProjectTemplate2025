@@ -5,8 +5,14 @@ using namespace std;
 int main()
 {
     AttendanceDBAbstraction db("./StudentAttendance.sqlite");
-	// db.InsertStudent("201204", "firt", "lad");
+	// db.InsertStudent("201203", "Andrew", "Del Real");
 	// db.InsertSection("Mahoney Baloney", "49", "SMTWRF");
-	db.InsertStudentEnroll("firt", "lad", "49");
+	// db.InsertStudentEnroll("Andrew", "Del Real", "49");
+    vector<Student> students = db.GetAllStudentsBySection("49");
+
+    for (auto student : students) {
+        cout << student.firstName << endl;
+        cout << student.lastName << endl;
+    }
     return 0;
 }

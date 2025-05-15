@@ -127,3 +127,35 @@ void AttendanceDBAbstraction::InsertStudentEnroll(string firstName, string lastN
         }
 
 }
+
+vector<Student> AttendanceDBAbstraction::GetAllStudentsBySection(string courseCode) {
+    sqlite3_stmt* myStatement;
+
+    vector<Student> retval;
+
+    int statusOfPrep = sqlite3_prepare_v2(db, "SELECT Student.firstName, Student.lastName FROM Student JOIN StudentEnrollsInSection ON Student.studentId = StudentEnrollsInSection.studentId JOIN Section ON StudentEnrollsInSection.sectionId = Section.sectionId WHERE Section.courseCode = ? ORDER BY Student.lastName ASC;", -1, &myStatement, NULL);
+    sqlite3_bind_text(myStatement, 1, courseCode.c_str(), -1, SQLITE_STATIC);
+
+
+    if (statusOfPrep == SQLITE_OK) {
+        int statusOfStep = sqlite3_step(myStatement);
+
+        while (statusOfStep == SQLITE_ROW) {
+            string firstName = ((char*)sqlite3_column_text(myStatement, 0));
+            string lastName = ((char*)sqlite3_column_text(myStatement, 1));
+
+            Student newStudent;
+            newStudent.firstName = firstName;
+            newStudent.lastName = lastName;
+            // cout << firstName << endl;
+            // cout << lastName << endl;
+
+            retval.push_back(newStudent);
+            statusOfStep = sqlite3_step(myStatement);
+        }
+
+        sqlite3_finalize(myStatement);
+    }
+
+    return retval;
+}

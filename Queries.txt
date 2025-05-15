@@ -63,6 +63,16 @@ FROM studentId, sectionId;
 
 SELECT * FROM studentId, sectionId;
 
+SELECT firstName, lastName
+FROM Student, StudentEnrollsInSection, Section
+WHERE Student.studentId = StudentEnrollsInSection.studentId
+AND Section.sectionId = (
+	SELECT Section.sectionId
+	FROM Section
+	WHERE courseCode = ?
+)
+ORDER BY lastName ASC;
+
 INSERT INTO [Student] ([studentId], [firstName], [lastName]) VALUES (?, ?, ?)
 
 g++ -o main ../agileProjectTemplate2025/code/*.cpp sqlite3.o -pthread -ldl
