@@ -12,6 +12,8 @@
 #include "AttendanceDBAbstraction.h"
 using namespace std;
 
+//
+
 vector<Student> _students;
 
 void printMainMenu();
@@ -99,11 +101,11 @@ void printMainMenu(){
 void printTakeAttendanceMenu(){
     string input;
     
-    cout<<"Please enter name of course you want to take attendance for: "<<endl;
+    cout<<"Please enter number1 of course you want to take attendance for: "<<endl;
     
     cin>>input;
     
-    if(input == "Software_Development"){
+    if(input == "49"){
         
     }
     else{
